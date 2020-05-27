@@ -29,8 +29,6 @@ export class LoginComponent implements OnInit {
     this.loginService.loginadmin(this.login).subscribe(data => {
       let str=data;
       if(data!=null){console.log("login success successfully."+str);
-      
-      //this.router.navigateByUrl('/admindash');
     }else{
         console.log("login fail .");
         this.router.navigateByUrl('/login');
@@ -47,7 +45,10 @@ export class LoginComponent implements OnInit {
     this.loginService.loginadmin2(this.login).subscribe(data => {
        this.user=data;
        if(this.user!=null){
-       console.log(this.user.userName+"\n"+this.user.token);}
+       console.log(this.user.userName+"\n"+this.user.token);
+       this.router.navigateByUrl('/admindash');
+
+      }
 
 
        

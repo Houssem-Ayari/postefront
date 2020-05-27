@@ -1,0 +1,128 @@
+<div class="col-md-12">
+    
+    <div class="card">
+        <div class="card-header">
+            <h5 class="card-category">Compte</h5>
+            <h4 class="card-title"> Compte Stats</h4>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive" >
+                type<select name="select"  (ngModelChange)="changeV($event)"  [(ngModel)]="info">
+                    <option value="null" disabled>choisir un choix</option>
+                    <option value="client">client</option>
+                    <option value="furnisseur">fournisseur</option>
+
+                                </select><br><br>
+                <form name="f1" [hidden]="isShow1">
+                     <table class="table">
+                        <input type="hidden" name="cid" [(ngModel)]="client.id">        
+                    <tr><td>CIN</td><td><input type="text" name="cin" [(ngModel)]="client.cin"></td></tr>
+                    <tr><td>username </td><td><input type="text" name="username" [(ngModel)]="client.user.username"></td></tr>
+                    <tr><td>password</td><td><input type="password" name="password" [(ngModel)]="client.user.password"></td></tr>
+                    <tr><td>email </td><td><input type="email" name="email" [(ngModel)]="client.user.email"></td></tr>
+                        <tr><td>nom </td><td><input type="text" name="nom" [(ngModel)]="client.user.nom"></td></tr>
+                            <tr><td>prenom </td><td><input type="text" name="prenom" [(ngModel)]="client.user.prenom"></td></tr>
+                                <tr><td>adresse </td><td><input type="text" name="adresse" [(ngModel)]="client.user.adresse"></td></tr>
+
+                    <button class="btn btn-success" (click)="addclient()">enregistrer</button>
+                    <button class="btn btn-success" type="reset">reset</button>
+                </table>
+                    </form>
+
+                    <form name="f2" [hidden]="isShow2">
+                              
+                        <table class="table">     
+                            <input type="hidden" name="fid" [(ngModel)]="fournisseur.id"> <input type="hidden" name="userid" [(ngModel)]="fournisseur.user.id">    
+                            <tr><td>shiffre</td><td><input type="text" name="shiffre"  [(ngModel)]="fournisseur.shiffre"></td></tr>
+                            <tr><td>username </td><td><input type="text" name="username" [(ngModel)]="fournisseur.user.username"></td></tr>
+                            <tr><td>password</td><td><input type="password" name="password" [(ngModel)]="fournisseur.user.password"></td></tr>
+                            <tr><td>email </td><td><input type="email" name="email" [(ngModel)]="fournisseur.user.email"></td></tr>
+                                <tr><td>nom </td><td><input type="text" name="nom" [(ngModel)]="fournisseur.user.nom"></td></tr>
+                                    <tr><td>prenom </td><td><input type="text" name="prenom" [(ngModel)]="fournisseur.user.prenom"></td></tr>
+                                        <tr><td>adresse </td><td><input type="text" name="adresse" [(ngModel)]="fournisseur.user.adresse"></td></tr>
+        
+                            <button class="btn btn-success" (click)="addfournisseur()">enregistrer</button>
+                            <button class="btn btn-success" type="reset">reset</button>
+                        </table>
+                        </form>
+                </div>
+            </div>
+    </div>
+    <div class="card" [hidden]="isShow1">
+        <div class="card-body">
+            <div class="input-group no-border">
+                <input type="text" value="" class="form-control" placeholder="Search...">
+                <div class="input-group-append">
+                  <div class="input-group-text">
+                    <i class="now-ui-icons ui-1_zoom-bold"></i>
+                  </div>
+                </div>
+              </div>
+            <table class="table" >  
+              <thead class="text-primary"> 
+                    
+                  <th class="text-right">cin</th>
+                  <th class="text-right">username</th>
+                  <th class="text-right">password</th>   
+                  <th class="text-right">email</th> 
+                  <th class="text-right">nom</th>
+                  <th class="text-right">prenom</th> 
+                  <th class="text-right">adresse</th> 
+              </thead>
+              <tbody>
+                  <tr *ngFor="let ad of Clients">  
+                    <td>{{ad.cin}}</td>  
+                    <td class="text-right">{{ad.user.username}}</td>
+                    <td class="text-right">{{ad.user.password}}</td>
+                    <td class="text-right">{{ad.user.email}}</td>
+                    <td class="text-right">{{ad.user.nom}}</td>
+                    <td class="text-right">{{ad.user.prenom}}</td>
+                    <td class="text-right">{{ad.user.adresse}}</td>
+                    <td class="text-right"><button class="btn btn-success"(click)="editeclient(ad.id)">Edit</button> | <button class="btn btn-success"(click)="deleteclient(ad.id)">delete</button> </td>
+                    </tr>
+                  </tbody>
+                
+                </table>
+        </div>
+
+    </div>
+
+    <div class="card" [hidden]="isShow2">
+        <div class="card-body">
+            <div class="input-group no-border">
+                <input type="text" value="" class="form-control" placeholder="Search...">
+                <div class="input-group-append">
+                  <div class="input-group-text">
+                    <i class="now-ui-icons ui-1_zoom-bold"></i>
+                  </div>
+                </div>
+              </div>
+            <table class="table" >  
+              <thead class="text-primary"> 
+                    
+                  <th class="text-right">shiffre</th>
+                  <th class="text-right">username</th>
+                  <th class="text-right">password</th>   
+                  <th class="text-right">email</th> 
+                  <th class="text-right">nom</th>
+                  <th class="text-right">prenom</th> 
+                  <th class="text-right">adresse</th> 
+              </thead>
+              <tbody>
+                  <tr *ngFor="let ad of Fournisseurs">  
+                    <td>{{ad.shiffre}}</td>  
+                    <td class="text-right">{{ad.user.username}}</td>
+                    <td class="text-right">{{ad.user.password}}</td>
+                    <td class="text-right">{{ad.user.email}}</td>
+                    <td class="text-right">{{ad.user.nom}}</td>
+                    <td class="text-right">{{ad.user.prenom}}</td>
+                    <td class="text-right">{{ad.user.adresse}}</td>
+                    <td class="text-right"><button class="btn btn-success"(click)="editefournisseur(ad.id)">Edit</button> | <button class="btn btn-success"(click)="deletefournisseur(ad.id)">delete</button> </td>
+                    </tr>
+                  </tbody>
+                
+                </table>
+        </div>
+
+    </div>
+</div>    

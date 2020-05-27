@@ -1,0 +1,44 @@
+<div class="col-md-12">
+    
+    <div class="card">
+        <div class="card-header">
+            <h5 class="card-category">Compte</h5>
+            <h4 class="card-title"> Compte Stats</h4>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive" >
+                <form>
+                    
+                    <table class="table">
+                    
+                        <tr>
+                            <td>Destination</td><td><select name="select1" [(ngModel)]="tarifint.destination" >
+                                                                <option value="null" disabled>choisir un pays</option>
+                                                                <option *ngFor="let prf of allDes" [ngValue]="prf">{{ prf.name }}</option>
+                                                            </select>
+        
+                            </td>
+                            </tr>
+                    
+                    
+                   <tr><td>intervale</td><td>du</td><td>au</td><td>prix</td></tr>
+                   <tr>
+                    <td>intervale</td><td><select name="select2" [(ngModel)]="tarifint.intervale">
+                                                        <option value="null" disabled>choisir un intervale</option>
+                                                        <option *ngFor="let prf of allInt" [ngValue]="prf">{{ prf.name }}</option>
+                                                    </select>
+
+                    </td><td>" "</td><td>" "</td><td>Entrer le num compte</td><td><input type="text" [(ngModel)]="tarifint.tarif" name="tarif"/></td>
+
+                    </tr>
+                    
+                   <td></td>
+                    </table> 
+                    <button class="btn btn-success" (click)="save()">enregistrer</button>
+                    <button class="btn btn-success" type="reset">reset</button>
+                    
+                    </form>
+                </div>
+            </div>
+    </div>
+</div>    
